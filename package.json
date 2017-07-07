@@ -11,8 +11,10 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "material-ui": "^0.18.6",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
     "nwb": "0.18.x"
