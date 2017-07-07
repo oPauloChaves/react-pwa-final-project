@@ -1,79 +1,49 @@
-/**
- * In this file, we create a React component
- * which incorporates components provided by Material-UI.
- */
 import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import Dialog from 'material-ui/Dialog'
-import { deepOrange500 } from 'material-ui/styles/colors'
+import { deepPurple700 } from 'material-ui/styles/colors'
 import FlatButton from 'material-ui/FlatButton'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 200,
-  },
-}
+import AppBar from 'material-ui/AppBar'
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
 
 const muiTheme = getMuiTheme({
   palette: {
-    accent1Color: deepOrange500,
+    primary1Color: deepPurple700
   },
 })
 
 class Main extends Component {
   constructor(props, context) {
     super(props, context)
-
-    this.handleRequestClose = this.handleRequestClose.bind(this)
-    this.handleTouchTap = this.handleTouchTap.bind(this)
-
-    this.state = {
-      open: false,
-    }
+    this.state = { open: false }
   }
 
-  handleRequestClose() {
-    this.setState({
-      open: false,
-    })
-  }
+  handleToggle = () => this.setState({ open: !this.state.open })
 
-  handleTouchTap() {
-    this.setState({
-      open: true,
-    })
-  }
+  handleClose = () => this.setState({ open: false })
 
   render() {
-    const standardActions = (
-      <FlatButton
-        label="Ok"
-        primary={true}
-        onTouchTap={this.handleRequestClose}
-      />
-    )
-
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={styles.container}>
-          <Dialog
-            open={this.state.open}
-            title="Super Secret Password"
-            actions={standardActions}
-            onRequestClose={this.handleRequestClose}
-          >
-            1-2-3-4-5
-          </Dialog>
-          <h1>Material-UI</h1>
-          <h2>I'm Paulo Chaves</h2>
-          <RaisedButton
-            label="Super Secret Password"
-            secondary={true}
-            onTouchTap={this.handleTouchTap}
+        <div>
+          <AppBar
+            title="Final Project"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            onLeftIconButtonTouchTap={this.handleToggle}
           />
+          <Drawer
+            docked={false}
+            width={300}
+            open={this.state.open}
+            onRequestChange={this.handleToggle}
+          >
+            <AppBar title="Final Project" />
+            <MenuItem onTouchTap={this.handleClose}>Menu Item</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Menu Item 2</MenuItem>
+          </Drawer>
         </div>
       </MuiThemeProvider>
     )

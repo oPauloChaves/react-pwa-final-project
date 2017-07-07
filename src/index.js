@@ -12,11 +12,11 @@ import App from './App'
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-const store = createStore()
+// const store = createStore()
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  //<Provider store={store}>
+    <App />,
+  //</Provider>,
   document.querySelector('#app')
 )
